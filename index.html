@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TikTok Downloader</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin-top: 50px; background: #f1f1f1; }
+    .container { max-width: 600px; margin: auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    input[type="text"] { width: 80%; padding: 10px; font-size: 16px; }
+    button { padding: 10px 20px; font-size: 16px; background: #fe2c55; color: white; border: none; cursor: pointer; }
+    .success { color: green; margin: 20px 0; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎵 TikTok Video Downloader</h1>
+    <form method="POST" action="/download">
+      <input type="text" name="url" placeholder="Paste TikTok URL here..." required>
+      <button type="submit">Download</button>
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <p class="{{ category }}">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% if download_link %}
+      <div class="success">
+        <p>✅ Video ready!</p>
+        <a href="{{ url_for('downloaded_file', filename=download_link) }}" download>
+          <button>⬇️ Download Video</button>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</body>
+      </html>
