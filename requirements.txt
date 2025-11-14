@@ -1,0 +1,3 @@
+Flask==2.3.3
+pytiktokdownloader==0.1.4
+requests==2.31.0
